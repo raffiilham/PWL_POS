@@ -12,15 +12,14 @@ class Usercontroller extends Controller
 {
     public function index()
     {
-        $data = [
-            'level_id' => 2,
-            'username' => 'manager_tiga',
-            'nama' => 'Manager 3',
-            'password' => Hash::make(12345)
-        ];
-        Usermodel::create(data);
-
-        $user = UserModel::all();
+        
+        $user = UserModel::firstOrCreate(
+            [
+                'username' => 'manager',
+                'nama' => 'manager',
+                'level' => 'manager'
+            ],
+        );
         return view('user', ['data' => $user]);
     }
 }
