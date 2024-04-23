@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usermodel;
 //use Illuminate\Support\Facades\DB;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 //use Termwind\Components\Hr;
 
 class Usercontroller extends Controller
@@ -13,12 +13,14 @@ class Usercontroller extends Controller
     public function index()
     {
         $data =[
-
-            'nama' => 'Pelanggan Pertama',
+            'level_id' => 2,
+            'username' => 'manager_tiga',
+            'nama' => 'Manager 3',
+            'password' => Hash::make('12345')
 
         ];
 
-        UserModel::where('username', 'customer-1')->update($data);
+        UserModel::create($data);
         
         $user = UserModel::all();
         return view('user', ['data' => $user]);
